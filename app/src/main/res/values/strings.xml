@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MvvmProject</string>
+    <string name="title">Title</string>
+    <string name="_1">1</string>
+    <string name="description">Description</string>
+</resources>
