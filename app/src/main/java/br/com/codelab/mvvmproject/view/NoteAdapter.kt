@@ -44,6 +44,11 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
             textViewPriority.text = currentNote.priority.toString()
         }
     }
+    
+    fun NoteAt(position: Int): Note {
+        return notes.get(position)
+
+    }
 
     fun setNotes(notes: List<Note>){
         this.notes = notes
