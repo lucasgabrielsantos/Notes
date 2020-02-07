@@ -46,10 +46,10 @@ abstract class NoteDatabase : RoomDatabase() {
                 noteDao = db.noteDao()
             }
 
-            override fun doInBackground(vararg params: Note?): Void? {
-                noteDao.insert(Note(11, "title 1", "Description 1", 5))
-                noteDao.insert(Note(12, "title 2", "Description 2", 6))
-                noteDao.insert(Note(13, "title 3", "Description 3", 9))
+            override fun doInBackground(vararg params: Note): Void? {
+                noteDao.insert(Note( "title 1", "Description 1", 5))
+                noteDao.insert(Note( "title 2", "Description 2", 6))
+                noteDao.insert(Note( "title 3", "Description 3", 9))
                 return null
             }
         }

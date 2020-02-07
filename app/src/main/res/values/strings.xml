@@ -3,4 +3,6 @@
     <string name="title">Title</string>
     <string name="_1">1</string>
     <string name="description">Description</string>
+    <string name="priority">Priority</string>
+    <string name="save">Save</string>
 </resources>

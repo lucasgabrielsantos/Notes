@@ -32,13 +32,13 @@ class NoteViewModel(context: Context) : ViewModel() {
     fun deleteAllNotes() {
         repository.deleteAllNotes()
     }
-    ;
+
     fun getAllNotes(): LiveData<List<Note>> {
         return allNotes
     }
 
     class ViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
-        override fun <T : ViewModel?>
+        override fun <T : ViewModel>
                 create(modelClass: Class<T>):
                 T = NoteViewModel(context) as T
 

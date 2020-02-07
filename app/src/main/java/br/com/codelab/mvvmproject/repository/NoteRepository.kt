@@ -3,10 +3,8 @@ package br.com.codelab.mvvmproject.repository
 import android.content.Context
 import android.os.AsyncTask
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import br.com.codelab.mvvmproject.data.NoteDao
 import br.com.codelab.mvvmproject.data.NoteDatabase
-import br.com.codelab.mvvmproject.extensions.toMutableLiveData
 import br.com.codelab.mvvmproject.model.Note
 
 
