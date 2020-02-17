@@ -13,9 +13,9 @@ import br.com.codelab.mvvmproject.R
 
 class AddNoteActivity : AppCompatActivity() {
 
-    lateinit var editTextTitle: EditText
-    lateinit var editTextDescription: EditText
-    lateinit var numberPicker: NumberPicker
+    private lateinit var editTextTitle: EditText
+    private lateinit var editTextDescription: EditText
+    private lateinit var numberPicker: NumberPicker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

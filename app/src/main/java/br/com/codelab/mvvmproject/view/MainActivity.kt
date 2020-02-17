@@ -25,8 +25,7 @@ class MainActivity : AppCompatActivity() {
     private val adapter = NoteAdapter()
 
     private val noteViewModel: NoteViewModel by lazy {
-        ViewModelProviders.of(this, NoteViewModel.ViewModelFactory(this@MainActivity))
-            .get(NoteViewModel::class.java)
+        ViewModelProviders.of(this, NoteViewModel.ViewModelFactory(this@MainActivity)).get(NoteViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,14 +73,14 @@ class MainActivity : AppCompatActivity() {
         const val ADD_NOTE_REQUEST = 1
     }
 
-    fun clickBtnAddNote() {
+    private fun clickBtnAddNote() {
         button_add_note.setOnClickListener {
             intent = Intent(this@MainActivity, AddNoteActivity::class.java)
             startActivityForResult(intent, ADD_NOTE_REQUEST)
         }
     }
 
-    fun instanceRvInAdapter() {
+    private fun instanceRvInAdapter() {
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.setHasFixedSize(true)
