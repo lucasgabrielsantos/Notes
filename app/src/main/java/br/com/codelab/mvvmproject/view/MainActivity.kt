@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
     private val adapter = NoteAdapter()
 
     private val noteViewModel: NoteViewModel by lazy {
-        ViewModelProviders.of(this, NoteViewModel.ViewModelFactory(this@MainActivity)).get(NoteViewModel::class.java)
+        ViewModelProviders.of(this, NoteViewModel.ViewModelFactory(this@MainActivity))
+            .get(NoteViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,20 +37,18 @@ class MainActivity : AppCompatActivity() {
         instanceRvInAdapter()
 
 
-        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        ) {
-            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder
-            ): Boolean {
+
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+            0, ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT) {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
                 return false
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 noteViewModel.delete(adapter.NoteAt(viewHolder.adapterPosition))
                 Toast.makeText(this@MainActivity, "Note deleted", Toast.LENGTH_SHORT).show()
-            }
-        }).attachToRecyclerView(recycler_view)
+            } }).attachToRecyclerView(recycler_view)
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -62,10 +61,10 @@ class MainActivity : AppCompatActivity() {
 
 
             noteViewModel.insert(note)
-            Toast.makeText(this, "Note saved", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Nota salva", Toast.LENGTH_SHORT).show()
 
         } else {
-            Toast.makeText(this, "Note not saved", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Erro ao salvar, tente novamente", Toast.LENGTH_SHORT).show()
         }
     }
 

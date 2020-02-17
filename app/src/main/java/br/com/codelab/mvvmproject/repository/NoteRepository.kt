@@ -38,66 +38,62 @@ class NoteRepository(context: Context) {
         return allNotes
     }
 
-    private class insertNoteAsyncTask() :
-        AsyncTask<Note, Void, Void>() {
-        lateinit var noteDao: NoteDao
+    companion object {
+        private class insertNoteAsyncTask() : AsyncTask<Note, Void, Void>() {
+            lateinit var noteDao: NoteDao
 
-        constructor(noteDao: NoteDao) : this() {
-            this.noteDao = noteDao
+            constructor(noteDao: NoteDao) : this() {
+                this.noteDao = noteDao
+            }
+
+
+            override fun doInBackground(vararg notes: Note): Void? {
+                noteDao.insert(notes[0])
+                return null
+            }
         }
 
+        private class updateNoteAsyncTask() : AsyncTask<Note, Void, Void>() {
+            lateinit var noteDao: NoteDao
 
-        override fun doInBackground(vararg notes: Note): Void? {
-            noteDao.insert(notes[0])
-            return null
-        }
-    }
-
-    private class updateNoteAsyncTask() :
-        AsyncTask<Note, Void, Void>() {
-        lateinit var noteDao: NoteDao
-
-        constructor(noteDao: NoteDao) : this() {
-            this.noteDao = noteDao
-        }
+            constructor(noteDao: NoteDao) : this() {
+                this.noteDao = noteDao
+            }
 
 
-        override fun doInBackground(vararg notes: Note): Void? {
-            noteDao.insert(notes[0])
-            return null
+            override fun doInBackground(vararg notes: Note): Void? {
+                noteDao.insert(notes[0])
+                return null
+            }
+
         }
 
-    }
+        private class deleteNoteAsyncTask() : AsyncTask<Note, Void, Void>() {
+            lateinit var noteDao: NoteDao
 
-    private class deleteNoteAsyncTask() :
-        AsyncTask<Note, Void, Void>() {
-        lateinit var noteDao: NoteDao
+            constructor(noteDao: NoteDao) : this() {
+                this.noteDao = noteDao
+            }
 
-        constructor(noteDao: NoteDao) : this() {
-            this.noteDao = noteDao
+
+            override fun doInBackground(vararg notes: Note): Void? {
+                noteDao.delete(notes[0])
+                return null
+            }
+
         }
 
+        private class deleteAllNoteAsyncTask() : AsyncTask<Void, Void, Void>() {
+            lateinit var noteDao: NoteDao
 
-        override fun doInBackground(vararg notes: Note): Void? {
-            noteDao.insert(notes[0])
-            return null
+            constructor(noteDao: NoteDao) : this() {
+                this.noteDao = noteDao
+            }
+
+            override fun doInBackground(vararg void: Void): Void? {
+                noteDao.deleteAllNotes()
+                return null
+            }
         }
-
-    }
-
-    private class deleteAllNoteAsyncTask() :
-        AsyncTask<Void, Void, Void>() {
-        lateinit var noteDao: NoteDao
-
-        constructor(noteDao: NoteDao) : this() {
-            this.noteDao = noteDao
-        }
-
-
-        override fun doInBackground(vararg void: Void): Void? {
-            noteDao.deleteAllNotes()
-            return null
-        }
-
     }
 }

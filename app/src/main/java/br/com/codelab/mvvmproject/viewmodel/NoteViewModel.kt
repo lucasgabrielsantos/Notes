@@ -9,8 +9,8 @@ import br.com.codelab.mvvmproject.repository.NoteRepository
 
 class NoteViewModel(context: Context) : ViewModel() {
 
-    private var repository: NoteRepository = NoteRepository(context)
-    private var allNotes: LiveData<List<Note>>
+    private val repository: NoteRepository = NoteRepository(context)
+    private val allNotes: LiveData<List<Note>>
 
 
     init {
