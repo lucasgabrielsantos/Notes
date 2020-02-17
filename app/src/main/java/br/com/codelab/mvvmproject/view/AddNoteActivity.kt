@@ -52,7 +52,7 @@ class AddNoteActivity : AppCompatActivity() {
             maxValue = 10
         }
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
-        title = "Add Note"
+        title = "Adicionar Notas"
     }
 
     private fun saveNote() {
@@ -62,8 +62,7 @@ class AddNoteActivity : AppCompatActivity() {
 
         if (title.trim().isEmpty() || description.trim().isEmpty()) {
             Toast.makeText(
-                this@AddNoteActivity,
-                "Please insert a title and description",
+                this@AddNoteActivity, "Por favor, insira um texto e descrição",
                 Toast.LENGTH_LONG).show()
         } else {
             val data = Intent().apply {
