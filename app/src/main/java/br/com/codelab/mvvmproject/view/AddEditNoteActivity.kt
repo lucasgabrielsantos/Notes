@@ -72,9 +72,8 @@ class AddEditNoteActivity : AppCompatActivity() {
         val priority = numberPicker.value
 
         if (title.trim().isEmpty() || description.trim().isEmpty()) {
-            Toast.makeText(
-                this@AddEditNoteActivity, "Por favor, insira um texto e descrição",
-                Toast.LENGTH_LONG
+            Toast.makeText(this@AddEditNoteActivity,
+                "Por favor, insira um texto e descrição", Toast.LENGTH_LONG
             ).show()
         } else {
             val data = Intent().apply {
