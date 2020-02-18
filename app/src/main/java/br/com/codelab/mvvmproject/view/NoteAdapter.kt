@@ -13,7 +13,7 @@ import java.util.*
 
 class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
     private var notes: List<Note> = ArrayList()
-    private var listener: OnItemClickListener? = null
+    private lateinit var listener: OnItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteHolder {
         val itemView: View = LayoutInflater.from(parent.context).inflate(R.layout.note_item, parent, false)
@@ -49,14 +49,19 @@ class NoteAdapter : RecyclerView.Adapter<NoteAdapter.NoteHolder>() {
         init {
             itemView.setOnClickListener {
                 val position = adapterPosition
-                if (listener != null && position != RecyclerView.NO_POSITION) {
-                    listener!!.onItemClick(notes[position])
+                if (position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(notes[position])
                 }
             }
         }
     }
 
     interface OnItemClickListener {
-        fun onItemClick(note: Note?)
+        fun onItemClick(note: Note)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+
+        this.listener = listener
     }
 }

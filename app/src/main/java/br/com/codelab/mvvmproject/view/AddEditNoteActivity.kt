@@ -11,7 +11,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.codelab.mvvmproject.R
 
-class AddNoteActivity : AppCompatActivity() {
+
+class AddEditNoteActivity : AppCompatActivity() {
 
     private lateinit var editTextTitle: EditText
     private lateinit var editTextDescription: EditText
@@ -52,7 +53,17 @@ class AddNoteActivity : AppCompatActivity() {
             maxValue = 10
         }
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close)
-        title = "Adicionar Notas"
+
+        val intent = intent
+
+        if (intent.hasExtra(EXTRA_ID)) {
+            title = "Editar Nota"
+            editTextTitle.setText(intent.getStringExtra(EXTRA_TITLE))
+            editTextDescription.setText(intent.getStringExtra(EXTRA_DESCRIPTION))
+            numberPicker.value = intent.getIntExtra(EXTRA_PRIORITY, 1)
+        } else {
+            title = "Adicionar Nota"
+        }
     }
 
     private fun saveNote() {
@@ -62,8 +73,9 @@ class AddNoteActivity : AppCompatActivity() {
 
         if (title.trim().isEmpty() || description.trim().isEmpty()) {
             Toast.makeText(
-                this@AddNoteActivity, "Por favor, insira um texto e descrição",
-                Toast.LENGTH_LONG).show()
+                this@AddEditNoteActivity, "Por favor, insira um texto e descrição",
+                Toast.LENGTH_LONG
+            ).show()
         } else {
             val data = Intent().apply {
                 putExtra(EXTRA_TITLE, title.toString())
@@ -79,5 +91,6 @@ class AddNoteActivity : AppCompatActivity() {
         const val EXTRA_DESCRIPTION = "br.com.codelab.mvvmproject.model.EXTRA_DESCRIPTION"
         const val EXTRA_PRIORITY = "br.com.codelab.mvvmproject.model.EXTRA_PIORITY"
         const val EXTRA_TITLE = "br.com.codelab.mvvmproject.model.EXTRA_TITLE"
+        const val EXTRA_ID = "br.com.codelab.mvvmproject.model.EXTRA_ID"
     }
 }
