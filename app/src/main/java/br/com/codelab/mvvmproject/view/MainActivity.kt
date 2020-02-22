@@ -84,10 +84,6 @@ class MainActivity : AppCompatActivity() {
             val id: Int = data!!.getIntExtra(AddEditNoteActivity.EXTRA_ID, -1)
 
             if (id == -1) {
-                Toast.makeText(this, "A nota não pode ser atualizada", Toast.LENGTH_SHORT).show()
-                return
-            }
-
             val title = data.getStringExtra(EXTRA_TITLE)
             val description = data.getStringExtra(EXTRA_DESCRIPTION)
             val priority = data.getIntExtra(EXTRA_PRIORITY, 1)
@@ -96,10 +92,11 @@ class MainActivity : AppCompatActivity() {
             note.id
             noteViewModel.update(note)
             Toast.makeText(this, "Nota atualizada", Toast.LENGTH_SHORT).show()
+
         } else {
-            Toast.makeText(this, "Nota não salva", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Nota não atualizada", Toast.LENGTH_SHORT).show()
         }
-    }
+    }}
 
     companion object {
         const val ADD_NOTE_REQUEST = 1
@@ -114,11 +111,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun instanceRvInAdapter() {
-        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.setHasFixedSize(true)
+        recycler_view.layoutManager = LinearLayoutManager(this)
+        recycler_view.setHasFixedSize(true)
 
-        recyclerView.adapter = adapter
+        recycler_view.adapter = adapter
         noteViewModel.getAllNotes().observe(this, Observer { notes ->
             adapter.setNotes(notes)
         })
@@ -134,7 +130,7 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.delete_all_notes -> {
                 noteViewModel.deleteAllNotes()
-                Toast.makeText(this, "All notes deleted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Todas notas deletadas", Toast.LENGTH_SHORT).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)

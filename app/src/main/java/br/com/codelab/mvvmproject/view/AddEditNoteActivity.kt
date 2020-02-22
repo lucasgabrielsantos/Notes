@@ -10,13 +10,10 @@ import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.codelab.mvvmproject.R
+import kotlinx.android.synthetic.main.activity_add_note.*
 
 
 class AddEditNoteActivity : AppCompatActivity() {
-
-    private lateinit var editTextTitle: EditText
-    private lateinit var editTextDescription: EditText
-    private lateinit var numberPicker: NumberPicker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,11 +41,8 @@ class AddEditNoteActivity : AppCompatActivity() {
     }
 
     private fun initVariables() {
-        editTextTitle = findViewById(R.id.edit_text_title)
-        editTextDescription = findViewById(R.id.edit_text_description)
-        numberPicker = findViewById(R.id.number_picker_priority)
 
-        numberPicker.apply {
+        number_picker_priority.apply {
             minValue = 1
             maxValue = 10
         }
@@ -58,18 +52,18 @@ class AddEditNoteActivity : AppCompatActivity() {
 
         if (intent.hasExtra(EXTRA_ID)) {
             title = "Editar Nota"
-            editTextTitle.setText(intent.getStringExtra(EXTRA_TITLE))
-            editTextDescription.setText(intent.getStringExtra(EXTRA_DESCRIPTION))
-            numberPicker.value = intent.getIntExtra(EXTRA_PRIORITY, 1)
+            edit_text_title.setText(intent.getStringExtra(EXTRA_TITLE))
+            edit_text_description.setText(intent.getStringExtra(EXTRA_DESCRIPTION))
+            number_picker_priority.value = intent.getIntExtra(EXTRA_PRIORITY, 1)
         } else {
             title = "Adicionar Nota"
         }
     }
 
     private fun saveNote() {
-        val title = editTextTitle.text
-        val description = editTextDescription.text
-        val priority = numberPicker.value
+        val title = edit_text_title.text
+        val description = edit_text_description.text
+        val priority = number_picker_priority.value
 
         if (title.trim().isEmpty() || description.trim().isEmpty()) {
             Toast.makeText(this@AddEditNoteActivity,
